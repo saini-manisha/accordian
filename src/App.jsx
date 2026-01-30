@@ -3,7 +3,7 @@ import "./App.css"
 import CreateRandomColor from "./components/CreateRandomColor"
 export default function App(){
   return <div> 
-    <Accordian></Accordian>
+    {/* <Accordian></Accordian> */}
     <CreateRandomColor></CreateRandomColor>
   </div>
 }

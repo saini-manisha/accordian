@@ -1,47 +1,62 @@
-import { useEffect, useState } from "react";
-import "./style.css"
-function CreateRandomColor() {
+import { useEffect } from "react";
+import { useState } from "react";
 
-    const [colorCodeType, setColorCodeType] = useState("RGB");
-    const [colorCode, setColorCode] = useState("rgb(74,251,174)");
+function CreateRandomColor(){
+    const [typeOfColor,setTypeOfColor]=useState("hex");
+    const [color,setColor]=useState("#000000");
 
-    function handleRandomGenerate(len){
-        return Math.floor(Math.random() * len);
-
+    function randomColorUtility(length){
+        return Math.floor(Math.random()*length);
     }
-    function handleColorGenerate() {
-        console.log(colorCodeType)
-        if(colorCodeType==="RGB"){
-            const r = handleRandomGenerate(256);
-        const g = handleRandomGenerate(256);
-        const b =handleRandomGenerate(256);
-        setColorCode(`rgb(${r},${g},${b})`);
+    function handleCreateRandomHexColor(){
+        //#000000
+
+        const hex=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+        let hexColor="#";
+        for(let i=0;i<6;i++){
+            hexColor+=hex[randomColorUtility(hex.length)];
         }
-        else{
-            const colorCodeText=[1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'];
-            let hexCode="#";
-            for(let i=0;i<6;i++){
-                hexCode+=colorCodeText[handleRandomGenerate(colorCodeText.length)];
-            }
-            setColorCode(hexCode);
-        }
+        setColor(hexColor);
+    }
+    function handleCreateRandomRgbColor(){
+        const r=randomColorUtility(256);
+        const g=randomColorUtility(256);
+        const b=randomColorUtility(256);
+
+        setColor(`rgb(${r},${g},${b})`);
     }
     useEffect(()=>{
-       handleColorGenerate();
-        
-    },[colorCodeType])
-    return <div className="wrapper" style={{ background: `${colorCode}`, color: "white", width: "100vw", height: "100vh" }} >
+        if(typeOfColor==='rgb') {
+            handleCreateRandomRgbColor();
+        }
+        else{
+            handleCreateRandomHexColor();
+        }
+    },[typeOfColor])
+    return <div style={{
+        width:"100vw",
+        height:"100vh",
+        background:color,        
+        }}>
+        <button onClick={()=>setTypeOfColor("hex")}>Create HEX Color</button>
+        <button onClick={()=>setTypeOfColor("rgb")}>Create RGB Color</button>
+        <button onClick={typeOfColor==="hex"?handleCreateRandomHexColor:handleCreateRandomRgbColor}>Generate Random Color</button>
 
-        <div className="generateBtn">
-            <button onClick={()=>setColorCodeType("HEX")}>Hex Color</button>
-            <button onClick={()=>setColorCodeType("RGB")}>RGB Color</button>
-            <button onClick={handleColorGenerate}>Generate Random Color</button>
-        </div>
-        <div className="colorContent">
-            <p className="colorCodeType">{colorCodeType}</p>
-            <p className="colorCode">{colorCode}</p>
-        </div>
+        <div style={{
+            display:"flex",
+            justifyContent:"center",
+            alignItems:"center",
+            color:"white",
+            fontSize:"30px",
+            marginTop:"50px",
+            flexDirection:"column",
+            gap:"20px"
+        }}
+        >
+            <h3>{typeOfColor} Color</h3>
+            <h1>{color}</h1>
 
+        </div>
     </div>
 }
 
