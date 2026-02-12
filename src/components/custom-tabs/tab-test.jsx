@@ -1,4 +1,7 @@
-import Tabs from "./tabs"
+import Tabs from "./tabs";
+function RandomComponent(){
+    return <h2>content from random componet</h2>
+}
 export default function CustomTabs(){
     const tabs=[
         {
@@ -11,7 +14,7 @@ export default function CustomTabs(){
         },
         {
             label:"Tab3",
-            content:<div>content for tab3</div>
+            content:<RandomComponent/>
         }
     ]
     return <Tabs tabsContent={tabs}></Tabs>

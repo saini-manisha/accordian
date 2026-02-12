@@ -6,6 +6,9 @@ import ImageSlider from "./components/image-slider"
 import LoadMoreData from "./components/load-more-data"
 import ProgressBar from "./components/progress-bar"
 import CustomTabs from "./components/custom-tabs/tab-test"
+import CustomModal from "./components/custom-modal-popup/modal-test"
+import GithubProfileFinder from "./components/github-profile-finder"
+
 export default function App(){
   return <div> 
     {/* <Accordian></Accordian> 
@@ -14,6 +17,8 @@ export default function App(){
     {/* <ImageSlider url="https://picsum.photos/v2/list" limit={"10"} page={"1"} ></ImageSlider> */}
     {/* <LoadMoreData></LoadMoreData> */}
     {/* <ProgressBar></ProgressBar> */}
-    <CustomTabs></CustomTabs>
+    {/* <CustomTabs></CustomTabs> */}
+    {/* <CustomModal></CustomModal> */}
+    <GithubProfileFinder/>
   </div>
 } 
